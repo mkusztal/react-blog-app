@@ -34,9 +34,9 @@ const Post = () => {
   if (!post) return <Navigate to="/" />;
   return (
     <section>
-      <Row md={4} className="d-flex">
-        <Col xs={12} className="justify-content-center">
-          <Card>
+      <Row md={4} className="d-flex justify-content-center">
+        <Col xs={12} lg="5">
+          <Card className="border-0">
             <Card.Body>
               <Card.Title className="mb-3">{post.title}</Card.Title>
               <Card.Subtitle className="mb-2">
@@ -49,7 +49,7 @@ const Post = () => {
             </Card.Body>
           </Card>
         </Col>
-        <Col xs={12} className="justify-content-end">
+        <Col xs={12} lg="2">
           <Link to={'/post/edit/' + postId}>
             <Button variant="outline-info" className="m-2">
               Edit
