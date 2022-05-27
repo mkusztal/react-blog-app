@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Col, Form, Row, FloatingLabel, Button } from 'react-bootstrap';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || '');
@@ -65,7 +67,7 @@ const PostForm = ({ action, actionText, ...props }) => {
           </Form.Group>
           <Form.Group className="mb-3 w-50">
             <Form.Label>Main content</Form.Label>
-            <FloatingLabel controlId="floatingTextarea">
+            {/* <FloatingLabel controlId="floatingTextarea">
               <Form.Control
                 as="textarea"
                 placeholder="Leave a comment here"
@@ -73,7 +75,8 @@ const PostForm = ({ action, actionText, ...props }) => {
                 style={{ height: '100px' }}
                 onChange={(e) => setContent(e.target.value)}
               />
-            </FloatingLabel>
+            </FloatingLabel> */}
+            <ReactQuill />
           </Form.Group>
           <Button as="input" type="submit" value={actionText} />{' '}
         </Form>
