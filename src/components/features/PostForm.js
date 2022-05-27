@@ -16,11 +16,19 @@ const PostForm = ({ action, actionText, ...props }) => {
   );
   const [content, setContent] = useState(props.content || '');
 
+  const [contentError, setContentError] = useState(false);
+  const [dateError, setDateError] = useState(false);
+
   let navigate = useNavigate();
 
   const handleSubmit = () => {
-    action({ title, author, publishedDate, shortDescription, content });
-    navigate('/');
+    // action({ title, author, publishedDate, shortDescription, content });
+    setContentError(!content);
+    setDateError(!publishedDate);
+    if (content && publishedDate) {
+      action({ title, author, publishedDate, shortDescription, content });
+      navigate('/');
+    }
   };
 
   const {
@@ -70,6 +78,11 @@ const PostForm = ({ action, actionText, ...props }) => {
               selected={publishedDate}
               onChange={(date) => setPublishedDate(date)}
             />
+            {dateError && (
+              <small className="d-block form-text text-danger mt-2">
+                Date can't be empty
+              </small>
+            )}
           </Form.Group>
           <Form.Group className="mb-3 w-50">
             <Form.Label>Short Description</Form.Label>
@@ -100,6 +113,11 @@ const PostForm = ({ action, actionText, ...props }) => {
               placeholder="Leave a comment here"
               onChange={setContent}
             />
+            {contentError && (
+              <small className="d-block form-text text-danger mt-2">
+                Content can't be empty
+              </small>
+            )}
           </Form.Group>
           <Button as="input" type="submit" value={actionText} />{' '}
         </Form>
