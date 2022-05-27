@@ -67,16 +67,12 @@ const PostForm = ({ action, actionText, ...props }) => {
           </Form.Group>
           <Form.Group className="mb-3 w-50">
             <Form.Label>Main content</Form.Label>
-            {/* <FloatingLabel controlId="floatingTextarea">
-              <Form.Control
-                as="textarea"
-                placeholder="Leave a comment here"
-                value={content}
-                style={{ height: '100px' }}
-                onChange={(e) => setContent(e.target.value)}
-              />
-            </FloatingLabel> */}
-            <ReactQuill />
+            <ReactQuill
+              theme="snow"
+              value={content}
+              placeholder="Leave a comment here"
+              onChange={setContent}
+            />
           </Form.Group>
           <Button as="input" type="submit" value={actionText} />{' '}
         </Form>
