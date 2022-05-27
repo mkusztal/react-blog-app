@@ -37,7 +37,7 @@ const PostForm = ({ action, actionText, ...props }) => {
           <Form.Group className="mb-3 w-50">
             <Form.Label>Title</Form.Label>
             <Form.Control
-              {...register('title', { required: true })}
+              {...register('title', { required: true, minLength: 3 })}
               type="text"
               placeholder="Enter title"
               value={title}
@@ -45,35 +45,51 @@ const PostForm = ({ action, actionText, ...props }) => {
             />
             {errors.title && (
               <small className="d-block form-text text-danger mt-2">
-                This field is required
+                Title is too short (min is 3)
               </small>
             )}
           </Form.Group>
           <Form.Group className="mb-3 w-50">
             <Form.Label>Author</Form.Label>
             <Form.Control
+              {...register('author', { required: true, minLength: 3 })}
               type="text"
               placeholder="Enter author"
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
             />
+            {errors.author && (
+              <small className="d-block form-text text-danger mt-2">
+                Author is too short (min is 3)
+              </small>
+            )}
           </Form.Group>
           <Form.Group className="mb-3 w-50">
             <Form.Label>Published</Form.Label>
-            <Form.Control
-              type="date"
-              placeholder="dd-mm-yyyy"
-              value={publishedDate}
-              onChange={(e) => setPublishedDate(e.target.value)}
+            <DatePicker
+              selected={publishedDate}
+              onChange={(date) => setPublishedDate(date)}
             />
           </Form.Group>
           <Form.Group className="mb-3 w-50">
             <Form.Label>Short Description</Form.Label>
             <FloatingLabel controlId="floatingTextarea">
-              <DatePicker
-                selected={publishedDate}
-                onChange={(date) => setShortDescription(date)}
+              <Form.Control
+                {...register('shortDescription', {
+                  required: true,
+                  minLength: 20,
+                })}
+                as="textarea"
+                placeholder="Leave a comment here"
+                value={shortDescription}
+                style={{ height: '100px' }}
+                onChange={(e) => setShortDescription(e.target.value)}
               />
+              {errors.shortDescription && (
+                <small className="d-block form-text text-danger mt-2">
+                  Short description is too short (min is 20)
+                </small>
+              )}
             </FloatingLabel>
           </Form.Group>
           <Form.Group className="mb-3 w-50">
