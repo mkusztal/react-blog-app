@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Col, Form, Row, FloatingLabel, Button } from 'react-bootstrap';
 import ReactQuill from 'react-quill';
+import { useForm } from 'react-hook-form';
 import 'react-quill/dist/quill.snow.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || '');
@@ -15,25 +18,36 @@ const PostForm = ({ action, actionText, ...props }) => {
 
   let navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     action({ title, author, publishedDate, shortDescription, content });
     navigate('/');
   };
 
+  const {
+    register,
+    handleSubmit: validate,
+    formState: { errors },
+  } = useForm();
+
   return (
     <Row>
       <Col md={{ span: 10, offset: 2 }}>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={validate(handleSubmit)}>
           <h3 className="pb-3">{actionText}</h3>
           <Form.Group className="mb-3 w-50">
             <Form.Label>Title</Form.Label>
             <Form.Control
+              {...register('title', { required: true })}
               type="text"
               placeholder="Enter title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
+            {errors.title && (
+              <small className="d-block form-text text-danger mt-2">
+                This field is required
+              </small>
+            )}
           </Form.Group>
           <Form.Group className="mb-3 w-50">
             <Form.Label>Author</Form.Label>
@@ -56,12 +70,9 @@ const PostForm = ({ action, actionText, ...props }) => {
           <Form.Group className="mb-3 w-50">
             <Form.Label>Short Description</Form.Label>
             <FloatingLabel controlId="floatingTextarea">
-              <Form.Control
-                as="textarea"
-                placeholder="Leave a comment here"
-                value={shortDescription}
-                style={{ height: '100px' }}
-                onChange={(e) => setShortDescription(e.target.value)}
+              <DatePicker
+                selected={publishedDate}
+                onChange={(date) => setShortDescription(date)}
               />
             </FloatingLabel>
           </Form.Group>
