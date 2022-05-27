@@ -1,32 +1,42 @@
+import { Col, Form, Row, FloatingLabel, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Col, Form, Row, FloatingLabel, Button } from 'react-bootstrap';
 import ReactQuill from 'react-quill';
 import { useForm } from 'react-hook-form';
 import 'react-quill/dist/quill.snow.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { getCategories } from '../../redux/postRedux';
+import { useSelector } from 'react-redux';
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || '');
   const [author, setAuthor] = useState(props.author || '');
   const [publishedDate, setPublishedDate] = useState(props.publishedDate || '');
+  const [category, setCategory] = useState(props.categories || '');
   const [shortDescription, setShortDescription] = useState(
     props.shortDescription || ''
   );
   const [content, setContent] = useState(props.content || '');
-
   const [contentError, setContentError] = useState(false);
   const [dateError, setDateError] = useState(false);
 
   let navigate = useNavigate();
 
+  const categories = useSelector(getCategories);
+
   const handleSubmit = () => {
-    // action({ title, author, publishedDate, shortDescription, content });
     setContentError(!content);
     setDateError(!publishedDate);
     if (content && publishedDate) {
-      action({ title, author, publishedDate, shortDescription, content });
+      action({
+        title,
+        author,
+        publishedDate,
+        shortDescription,
+        content,
+        category,
+      });
       navigate('/');
     }
   };
@@ -83,6 +93,19 @@ const PostForm = ({ action, actionText, ...props }) => {
                 Date can't be empty
               </small>
             )}
+          </Form.Group>
+          <Form.Group className="mb-3 w-50">
+            <Form.Label>Category</Form.Label>
+            <Form.Select onChange={setCategory} value={category}>
+              <option disabled value="1">
+                Select category...
+              </option>
+              {/* {categories.map((category, index) => (
+                <option key={index} value={category}>
+                  {category}
+                </option>
+              ))} */}
+            </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3 w-50">
             <Form.Label>Short Description</Form.Label>

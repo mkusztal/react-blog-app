@@ -7,6 +7,7 @@ const initialState = {
       content: 'Main content of the article',
       publishedDate: new Date('02-02-2022'),
       author: 'John Doe',
+      category: 'Sport',
     },
 
     {
@@ -16,6 +17,7 @@ const initialState = {
       content: 'Main content of the article',
       publishedDate: new Date('02-02-2022'),
       author: 'John Doe',
+      category: 'News',
     },
 
     {
@@ -25,6 +27,7 @@ const initialState = {
       content: 'Main content of the article',
       publishedDate: new Date('02-02-2022'),
       author: 'John Doe',
+      category: 'Movies',
     },
 
     {
@@ -34,8 +37,11 @@ const initialState = {
       content: 'Main content of the article',
       publishedDate: new Date('02-02-2022'),
       author: 'John Doe',
+      category: 'Sport',
     },
   ],
+
+  categories: ['Sport', 'News', 'Movies'],
 };
 
 export default initialState;
