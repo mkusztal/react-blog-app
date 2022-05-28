@@ -44,10 +44,13 @@ const Post = () => {
                 dangerouslySetInnerHTML={{ __html: post.title }}
               />
               <Card.Subtitle className="mb-2">
-                Author:{post.author}
+                Author: {post.author}
               </Card.Subtitle>
               <Card.Subtitle className="mb-3">
                 Published:{dateToStr(post.publishedDate)}
+              </Card.Subtitle>
+              <Card.Subtitle className="mb-3">
+                Category: {post.category}
               </Card.Subtitle>
               <Card.Text>{post.shortDescription}</Card.Text>
             </Card.Body>

@@ -13,7 +13,7 @@ const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || '');
   const [author, setAuthor] = useState(props.author || '');
   const [publishedDate, setPublishedDate] = useState(props.publishedDate || '');
-  const [category, setCategory] = useState(props.categories || '');
+  const [category, setCategory] = useState(props.category || '');
   const [shortDescription, setShortDescription] = useState(
     props.shortDescription || ''
   );
