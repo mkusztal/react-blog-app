@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import 'react-quill/dist/quill.snow.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { getCategories } from '../../redux/postRedux';
+import { getCategories } from '../../redux/categoryReducer';
 import { useSelector } from 'react-redux';
 
 const PostForm = ({ action, actionText, ...props }) => {
@@ -100,11 +100,11 @@ const PostForm = ({ action, actionText, ...props }) => {
               <option disabled value="1">
                 Select category...
               </option>
-              {/* {categories.map((category, index) => (
+              {categories.map((category, index) => (
                 <option key={index} value={category}>
                   {category}
                 </option>
-              ))} */}
+              ))}
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3 w-50">
