@@ -16,10 +16,12 @@ const Posts = () => {
               <Card.Body>
                 <Card.Title className="mb-3">{post.title}</Card.Title>
                 <Card.Subtitle className="mb-2">
-                  Author:{post.author}
+                  <b>Author:</b>
+                  {post.author}
                 </Card.Subtitle>
                 <Card.Subtitle className="mb-3">
-                  Published:{dateToStr(post.publishedDate)}
+                  <b>Published:</b>
+                  {dateToStr(post.publishedDate)}
                 </Card.Subtitle>
                 <Card.Text>
                   <b>Category:</b> {post.category}

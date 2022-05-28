@@ -7,6 +7,7 @@ import PostAdd from './components/pages/PostAdd';
 import PostEdit from './components/pages/PostEdit';
 import About from './components/pages/About';
 import NotFound from './components/pages/NotFound';
+import Categories from './components/pages/Categories';
 
 // styles
 import { Container } from 'react-bootstrap';
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/post/:postId" element={<Post />} />
           <Route path="/post/add" element={<PostAdd />} />
           <Route path="/post/edit/:postId" element={<PostEdit />} />
+          <Route path="/categories" element={<Categories />} />
           <Route path="/about" element={<About />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
