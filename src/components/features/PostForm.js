@@ -96,7 +96,12 @@ const PostForm = ({ action, actionText, ...props }) => {
           </Form.Group>
           <Form.Group className="mb-3 w-50">
             <Form.Label>Category</Form.Label>
-            <Form.Select onChange={setCategory} value={category}>
+            <Form.Control
+              {...register('category', { required: true })}
+              as="select"
+              onChange={(e) => setCategory(e.target.value)}
+              value={category ? category : '1'}
+            >
               <option disabled value="1">
                 Select category...
               </option>
@@ -105,7 +110,7 @@ const PostForm = ({ action, actionText, ...props }) => {
                   {category}
                 </option>
               ))}
-            </Form.Select>
+            </Form.Control>
           </Form.Group>
           <Form.Group className="mb-3 w-50">
             <Form.Label>Short Description</Form.Label>
