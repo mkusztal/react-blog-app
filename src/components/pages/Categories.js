@@ -11,8 +11,8 @@ const Categories = () => {
       <h1 className="mb=5">All categories</h1>
       <Row xs={1} md={1} className="g-2 justify-content-md-center">
         {categories.map((category) => (
-          <Col>
-            <Link key={category} to={'/categories/' + category}>
+          <Col key={category.id}>
+            <Link to={'/categories/' + category} key={category}w>
               <Button variant={'primary'} className="px-5">
                 {category}
               </Button>

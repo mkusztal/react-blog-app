@@ -9,7 +9,7 @@ const Posts = () => {
 
   return (
     <section>
-      <Row xs={12} md={1} className="g-2">
+      <Row xs={12} md={2} className="g-2">
         {posts.map((post) => (
           <Col key={post.id}>
             <Card>

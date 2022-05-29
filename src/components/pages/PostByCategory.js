@@ -2,7 +2,7 @@ import { Row, Col } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getPostByCategory } from '../../redux/postRedux';
-import Posts from './Posts';
+import Post from './Posts';
 
 const PostByCategory = () => {
   const { postCategory } = useParams();
@@ -22,10 +22,10 @@ const PostByCategory = () => {
           <h1>Category: {postCategory}</h1>
         </Col>
       </Row>
-      <Row xs={1} md={2}>
+      <Row xs={1} md={2} className="g-3 justify-content-md-center">
         {posts.map((post) => (
           <Col key={post.id}>
-            <Posts {...post} />
+            <Post {...post} />
           </Col>
         ))}
       </Row>
